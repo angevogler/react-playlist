@@ -1,0 +1,59 @@
+.main-nav {
+  background-color: #042744;
+  color: #FFFFFF;
+  padding: 2% 2% 2% 75%;
+  display: flex;
+  justify-content: space-between; }
+
+.page-container {
+  padding: 3%;
+  color: #042744;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between; }
+  .page-container h3 {
+    font-family: 'Playfair Display', serif; }
+
+.playlist-form {
+  width: 42%;
+  padding: 1%;
+  border: #628395 solid 2px; }
+  .playlist-form .form {
+    display: flex;
+    flex-direction: column; }
+    .playlist-form .form input {
+      padding: 2% 1%;
+      margin: 1% 0;
+      color: #042744;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700; }
+    .playlist-form .form textarea {
+      padding: 2% 1%;
+      margin: 1% 0;
+      height: 200px;
+      color: #042744;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700; }
+    .playlist-form .form button {
+      margin-left: 85%;
+      width: 15%; }
+
+.playlist {
+  width: 42%;
+  padding: 1%;
+  border: #628395 solid 2px; }
+
+.playlist-item-container {
+  display: flex;
+  margin: 1% 0;
+  border-bottom: #628395 solid 2px; }
+  .playlist-item-container .favorite-btn-container {
+    margin-right: 1%; }
+  .playlist-item-container .playlist-item {
+    padding-left: 3%; }
+    .playlist-item-container .playlist-item .playlist-item-val {
+      font-weight: 500;
+      margin-left: 0.75%; }
+
+/*# sourceMappingURL=styles.css.map */
