@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Playlist from '../components/Playlist.js';
 
 class PlaylistItem extends Component {
   render() {

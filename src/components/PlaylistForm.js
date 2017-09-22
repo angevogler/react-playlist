@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Playlist from '../components/Playlist.js';
 
 class PlaylistForm extends Component {
   constructor(props) {
@@ -13,24 +12,60 @@ class PlaylistForm extends Component {
     }
   }
 
+  // update state of title
+  newTitle(event) {
+    this.setState({
+      title: event.target.value,
+    })
+  }
+
+  // update state of artist
+  newArtist(event) {
+    this.setState({
+      artist: event.target.value,
+    })
+  }
+
+  // update state of notes
+  newNotes(event) {
+    this.setState({
+      notes: event.target.value,
+    })
+  }
+
   newSong(event) {
-    console.log(event.target.value)
-    console.log(this.state.title)
+    console.log(this.state.title);
+    console.log(this.state.artist);
+    console.log(this.state.notes);
+
+    this.props.onChangeValue({
+      title: this.state.title,
+      artist: this.state.artist,
+      notes: this.state.notes,
+      favorite: false,
+    })
   }
 
 
 
   render() {
-    console.log(this.props.playlist);
+    const playlist = this.props.playlist
+    console.log(playlist);
 
     return(
       <div className="playlist-form">
         <h3>Add New Song:</h3>
         <div className="form">
-          <input type="text" placeholder="Song Title" value={this.state.newTitle} onChange={event => this.newSong(event)}/>
-          <input type="text" placeholder="Artist/Band"/>
-          <textarea placeholder="Add notes:"></textarea>
-          <button onClick={(event) => this.newSong(event)}>Add</button>
+          <input type="text" placeholder="Song Title"
+            value={this.state.title}
+            onChange={event => this.newTitle(event)}/>
+          <input type="text" placeholder="Artist/Band"
+            value={this.state.artist}
+            onChange={event => this.newArtist(event)}/>
+          <textarea placeholder="Add notes:"
+            value={this.state.notes}
+            onChange={event => this.newNotes(event)}></textarea>
+          <button onClick={() => this.newSong()}>Add</button>
         </div>
       </div>
     );

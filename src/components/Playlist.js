@@ -16,9 +16,7 @@ class Playlist extends Component {
       artist: "blink-182",
       notes: "Nobody likes you when you're 23",
       favorite: false,
-    }
-
-    ]
+    }]
 
     this.state = {
       searchText: "",
@@ -29,7 +27,15 @@ class Playlist extends Component {
   }
 
   handleNewSong(event) {
-    playlist.push()
+    console.log('New song: ');
+    console.log(event)
+    console.log(this.playlist);
+    // this.state.playlist.push(event)
+
+    const added = this.state.playlist.slice();
+    added.push(event);
+
+    this.setState({ playlist: added });
   }
 
   render() {
