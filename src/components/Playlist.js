@@ -19,18 +19,17 @@ class Playlist extends Component {
     }]
 
     this.state = {
-      searchText: "",
+      searchTxt: "",
       playlist: playlist,
       searchedSongs: playlist,
     }
 
   }
 
+  // add new song to playlist
   handleNewSong(event) {
     console.log('New song: ');
     console.log(event)
-    console.log(this.playlist);
-    // this.state.playlist.push(event)
 
     const added = this.state.playlist.slice();
     added.push(event);
@@ -38,19 +37,52 @@ class Playlist extends Component {
     this.setState({ playlist: added });
   }
 
+  // display songs from search component
+  findSong(event) {
+    let search = this.state.searchTxt.toLowerCase();
+    let playlist = this.state.playlist;
+
+    this.setState({
+      searchTxt: event.target.value,
+    });
+
+    // iterate through the playlist to find each song title
+    for (let i = 0; i < playlist.length; i++) {
+      // iterate again to be able to compare each letter
+      // between the song title and the searchTxt
+      for (let j = 0; j < playlist[i].title.length; j++) {
+        // if the song[i].title matches the searchTxt
+        if (search[j] === playlist[i].title[j].toLowerCase()) {
+          // push it into an array
+          // set that array of matches = to playlist in state
+          console.log(search);
+        }
+      }
+    }
+
+  }
+
   render() {
 
+    // show the songs
     const songs = this.state.playlist.map(song => {
-      return(
-        <div className="playlist-item-container" key={song.title}>
-         <div className="favrorite-btn-container">
-           <button>Favorite</button>
-         </div>
-         <div className="playlist-item">
-           <PlaylistItem item = {song}/>
-         </div>
-        </div>
-      );
+      if (this.state.favorite) {
+        return(
+          <div className="playlist-item-container" key={song.title}>
+           <div className="playlist-item">
+             <PlaylistItem item = {song}/>
+           </div>
+          </div>
+        );
+      } else {
+        return(
+          <div className="playlist-item-container" key={song.title}>
+           <div className="playlist-item">
+             <PlaylistItem item = {song}/>
+           </div>
+          </div>
+        );
+      }
     });
 
     return(
@@ -60,7 +92,7 @@ class Playlist extends Component {
         <div className="playlist">
           <h3>Playlist Title:</h3>
           <div>
-            <input type="text" placeholder="Search by Song Title"/>
+            <input type="text" placeholder="Search by Song Title" onChange={ event => this.findSong(event)}/>
           </div>
           <div>
             {songs}

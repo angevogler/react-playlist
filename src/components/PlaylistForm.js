@@ -34,9 +34,6 @@ class PlaylistForm extends Component {
   }
 
   newSong(event) {
-    console.log(this.state.title);
-    console.log(this.state.artist);
-    console.log(this.state.notes);
 
     this.props.onChangeValue({
       title: this.state.title,
@@ -49,8 +46,6 @@ class PlaylistForm extends Component {
 
 
   render() {
-    const playlist = this.props.playlist
-    console.log(playlist);
 
     return(
       <div className="playlist-form">
