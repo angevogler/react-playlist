@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import PlaylistForm from '../components/PlaylistForm.js';
-import PlaylistItem from '../components/PlaylistItem.js';
+
+import PlaylistForm from './PlaylistForm.js';
+import PlaylistItem from './PlaylistItem.js';
 
 class Playlist extends Component {
   constructor(props) {
@@ -41,45 +42,51 @@ class Playlist extends Component {
   handleFavorite(event) {
     console.log(event)
 
+    console.log(this.state.playlist);
+
     const favorites = this.state.playlist.slice();
+    console.log("favorites before push")
     console.log(favorites)
+
     favorites.push(event);
 
+    console.log("favorites after push")
     console.log(favorites);
     // this.setState({ playlist: favorites});
   }
 
   // display songs from search component
-  findSong(event) {
-    let search = this.state.searchTxt.toLowerCase();
+  handleSearch(event) {
     let playlist = this.state.playlist;
-    let matches = []
+    let matches = [];
 
     this.setState({
       searchTxt: event.target.value,
-    });
+    }, function() {
+      let search = this.state.searchTxt.toLowerCase();
 
-    // iterate through the playlist to find each song title
-    for (let i = 0; i < playlist.length; i++) {
-      // iterate again to be able to compare each letter
-      // between the song title and the searchTxt
-      for (let j = 0; j < playlist[i].title.length; j++) {
-        // if the song[i].title matches the searchTxt
-        if (search[j] === playlist[i].title[j].toLowerCase()) {
-          // push it into an array
+      // iterate through the playlist to find each song title
+      for (let i = 0; i < playlist.length; i++) {
+        if (playlist[i].title.toLowerCase().includes(search)) {
           matches.push(playlist[i]);
-          console.log(matches);
-          // set that array of matches = to playlist in state
         }
       }
-    }
+    });
 
+    this.setState({
+      searchedSongs: matches,
+    });
   }
 
   render() {
 
+    let songs;
+    let matches;
     // show the songs
-    const songs = this.state.playlist.map(song => {
+    if (this.state.searchTxt === "") {
+      console.log(this.state.playlist)
+      songs = this.state.playlist.map(song => {
+        console.log(song.title);
         return(
           <div className="playlist-item-container" key={song.title}>
            <div className="playlist-item">
@@ -87,7 +94,22 @@ class Playlist extends Component {
            </div>
           </div>
         );
-    });
+      });
+    } else if (this.state.searchTxt !== "") {
+      console.log(this.state.searchTxt);
+      console.log(this.state.searchedSongs);
+      matches = this.state.searchedSongs.map(match => {
+        console.log(match.title);
+        return(
+          <div className="playlist-item-container" key={match.title}>
+           <div className="playlist-item">
+             <PlaylistItem item = {match} onChangeValue={(event) => this.handleFavorite(event)}/>
+           </div>
+          </div>
+        );
+      })
+    }
+
 
     return(
       <div className="page-container">
@@ -96,10 +118,11 @@ class Playlist extends Component {
         <div className="playlist">
           <h3>Playlist</h3>
           <div>
-            <input type="text" placeholder="Search by Song Title" onChange={ event => this.findSong(event)}/>
+            <input type="text" placeholder="Search by Song Title" onChange={ event => this.handleSearch(event)}/>
           </div>
           <div>
             {songs}
+            {matches}
           </div>
         </div>
       </div>
