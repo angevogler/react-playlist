@@ -34,7 +34,6 @@ class PlaylistForm extends Component {
   }
 
   newSong(event) {
-
     this.props.onChangeValue({
       title: this.state.title,
       artist: this.state.artist,
@@ -42,8 +41,6 @@ class PlaylistForm extends Component {
       favorite: false,
     })
   }
-
-
 
   render() {
 

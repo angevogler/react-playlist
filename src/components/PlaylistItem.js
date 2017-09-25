@@ -13,7 +13,18 @@ class PlaylistItem extends Component {
   }
 
   toggleFavorite() {
+    const song = this.props.item;
+
     this.setState({
+      title: song.title,
+      artist: song.artist,
+      favorite: !this.state.favorite,
+    }, () => console.log("It is " + this.state.favorite + " that " + this.state.title + " by " + this.state.artist + " a favorite song"));
+
+    this.props.onChangeValue({
+      title: song.title,
+      artist: song.artist,
+      notes: song.notes,
       favorite: !this.state.favorite,
     })
   }

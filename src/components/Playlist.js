@@ -37,10 +37,23 @@ class Playlist extends Component {
     this.setState({ playlist: added });
   }
 
+  // change value of favorite in the state
+  handleFavorite(event) {
+    console.log(event)
+
+    const favorites = this.state.playlist.slice();
+    console.log(favorites)
+    favorites.push(event);
+
+    console.log(favorites);
+    // this.setState({ playlist: favorites});
+  }
+
   // display songs from search component
   findSong(event) {
     let search = this.state.searchTxt.toLowerCase();
     let playlist = this.state.playlist;
+    let matches = []
 
     this.setState({
       searchTxt: event.target.value,
@@ -54,8 +67,9 @@ class Playlist extends Component {
         // if the song[i].title matches the searchTxt
         if (search[j] === playlist[i].title[j].toLowerCase()) {
           // push it into an array
+          matches.push(playlist[i]);
+          console.log(matches);
           // set that array of matches = to playlist in state
-          console.log(search);
         }
       }
     }
@@ -66,23 +80,13 @@ class Playlist extends Component {
 
     // show the songs
     const songs = this.state.playlist.map(song => {
-      if (this.state.favorite) {
         return(
           <div className="playlist-item-container" key={song.title}>
            <div className="playlist-item">
-             <PlaylistItem item = {song}/>
+             <PlaylistItem item = {song} onChangeValue={(event) => this.handleFavorite(event)}/>
            </div>
           </div>
         );
-      } else {
-        return(
-          <div className="playlist-item-container" key={song.title}>
-           <div className="playlist-item">
-             <PlaylistItem item = {song}/>
-           </div>
-          </div>
-        );
-      }
     });
 
     return(
@@ -90,7 +94,7 @@ class Playlist extends Component {
         <PlaylistForm playlist={this.state.playlist}
         onChangeValue={(event) => this.handleNewSong(event)}/>
         <div className="playlist">
-          <h3>Playlist Title:</h3>
+          <h3>Playlist</h3>
           <div>
             <input type="text" placeholder="Search by Song Title" onChange={ event => this.findSong(event)}/>
           </div>
