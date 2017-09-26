@@ -36,7 +36,7 @@ class PlaylistItem extends Component {
       return(
         <div>
           <div className="favrorite-btn-container">
-            <p onClick={() => this.toggleFavorite()}>&#9829;</p>
+            <p onClick={() => this.toggleFavorite()} className="favorited">&#9829;</p>
           </div>
           <h5>Song Title: <span className="playlist-item-val">{song.title}</span></h5>
           <h5>Artist/Band: <span className="playlist-item-val">{song.artist}</span></h5>
@@ -47,7 +47,7 @@ class PlaylistItem extends Component {
       return(
         <div>
           <div className="favrorite-btn-container">
-            <p onClick={() => this.toggleFavorite()}>&#9825;</p>
+            <p onClick={() => this.toggleFavorite()} className="unfavorited">&#9825;</p>
           </div>
           <h5>Song Title: <span className="playlist-item-val">{song.title}</span></h5>
           <h5>Artist/Band: <span className="playlist-item-val">{song.artist}</span></h5>

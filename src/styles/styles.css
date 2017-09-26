@@ -18,7 +18,13 @@
 .playlist-form {
   width: 42%;
   padding: 1%;
-  border: #628395 solid 2px; }
+  border: #628395 solid 2px;
+  background-color: #F4F4F4;
+  box-shadow: 0 8px 16px 0 #9ECDE5, 0 6px 20px 0 #042744; }
+  .playlist-form h3 {
+    text-align: center;
+    border-bottom: 1px;
+    font-size: 24px; }
   .playlist-form .form {
     display: flex;
     flex-direction: column; }
@@ -27,29 +33,69 @@
       margin: 1% 0;
       color: #042744;
       font-family: 'Raleway', sans-serif;
-      font-weight: 700; }
+      font-weight: 700;
+      font-size: 14px; }
+    .playlist-form .form input:focus {
+      border: 2px solid #9ECDE5;
+      outline: none; }
     .playlist-form .form textarea {
       padding: 2% 1%;
       margin: 1% 0;
       height: 200px;
       color: #042744;
       font-family: 'Raleway', sans-serif;
-      font-weight: 700; }
+      font-weight: 700;
+      font-size: 14px; }
+    .playlist-form .form textarea:focus {
+      border: 2px solid #9ECDE5;
+      outline: none; }
     .playlist-form .form button {
-      margin-left: 85%;
-      width: 15%; }
+      margin-left: 80%;
+      width: 20%;
+      background-color: #FF807B;
+      border-radius: 4px;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+    .playlist-form .form button:hover {
+      background-color: #AD243D; }
 
 .playlist {
   width: 42%;
   padding: 1%;
-  border: #628395 solid 2px; }
+  border: #628395 solid 2px;
+  background-color: #F4F4F4;
+  box-shadow: 0 8px 16px 0 #9ECDE5, 0 6px 20px 0 #042744; }
+  .playlist h3 {
+    text-align: center;
+    border-bottom: 1px;
+    font-size: 24px; }
+  .playlist .search-bar {
+    padding: 2% 1%;
+    margin: 1% 0;
+    color: #042744;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    width: 97%; }
+  .playlist .search-bar:focus {
+    border: 2px solid #9ECDE5;
+    outline: none; }
 
 .playlist-item-container {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   margin: 1% 0;
   border-bottom: #628395 solid 2px; }
   .playlist-item-container .favorite-btn-container {
     margin-right: 1%; }
+  .playlist-item-container .favorited {
+    color: #AD243D; }
+  .playlist-item-container .unfavorited {
+    color: #FF807B; }
   .playlist-item-container .playlist-item {
     padding-left: 3%; }
     .playlist-item-container .playlist-item .playlist-item-val {

@@ -57,7 +57,7 @@ class PlaylistForm extends Component {
           <textarea placeholder="Add notes:"
             value={this.state.notes}
             onChange={event => this.newNotes(event)}></textarea>
-          <button onClick={() => this.newSong()}>Add</button>
+          <button onClick={() => this.newSong()}>&#x2b; Add</button>
         </div>
       </div>
     );

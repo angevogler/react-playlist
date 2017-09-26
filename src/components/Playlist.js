@@ -48,11 +48,17 @@ class Playlist extends Component {
     console.log("favorites before push")
     console.log(favorites)
 
-    favorites.push(event);
+    for (let i = 0; i < favorites.length; i++) {
+      // Ideally we'd use a unique ID instad of a title. Possible to
+      // have dupe titles.
+      if (favorites[i].title === event.title) {
+        favorites[i].favorite = true;
+      }
+    }
 
     console.log("favorites after push")
     console.log(favorites);
-    // this.setState({ playlist: favorites});
+    this.setState({ playlist: favorites});
   }
 
   // display songs from search component
@@ -71,11 +77,12 @@ class Playlist extends Component {
           matches.push(playlist[i]);
         }
       }
+
+      this.setState({
+        searchedSongs: matches,
+      });
     });
 
-    this.setState({
-      searchedSongs: matches,
-    });
   }
 
   render() {
@@ -95,9 +102,8 @@ class Playlist extends Component {
           </div>
         );
       });
+    // } else if (this.state.searchedSongs.length > 0) {
     } else if (this.state.searchTxt !== "") {
-      console.log(this.state.searchTxt);
-      console.log(this.state.searchedSongs);
       matches = this.state.searchedSongs.map(match => {
         console.log(match.title);
         return(
@@ -116,9 +122,10 @@ class Playlist extends Component {
         <PlaylistForm playlist={this.state.playlist}
         onChangeValue={(event) => this.handleNewSong(event)}/>
         <div className="playlist">
-          <h3>Playlist</h3>
+          <h3>Playlist:</h3>
           <div>
-            <input type="text" placeholder="Search by Song Title" onChange={ event => this.handleSearch(event)}/>
+            <input className="search-bar" type="text" placeholder="Search by Song Title"
+            onChange={ event => this.handleSearch(event)}/>
           </div>
           <div>
             {songs}
